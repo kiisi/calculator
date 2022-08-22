@@ -2,7 +2,7 @@ import calculator from './calc.js';
 
 
 let calculatorBoardCalc = document.querySelector(".calculator-display-calc input");
-let calculatorBoardBtn = document.querySelectorAll(".calculator-board-btn");
+let calculatorBoardBtn = document.querySelectorAll(".calculator-board-btn-display");
 
 calculatorBoardBtn.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
