@@ -1,0 +1,16 @@
+:root{
+    --bg-color:#fff;
+    --text-color:rgb(34, 37, 46);
+}
+
+@media (prefers-color-scheme: dark){
+    :root{
+    --bg-color:rgb(34, 37, 46);
+    --text-color:#fff;
+    }
+}
+
+body{
+    background:var(--bg-color);
+    color:var(--text-color);
+}
