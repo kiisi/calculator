@@ -1,16 +1,19 @@
 import calculator from './calc.js';
 
 
-let board = document.querySelector('.board')
-let button = document.querySelector('.equal')
+let calculatorBoardCalc = document.querySelector(".calculator-display-calc input");
+let calculatorBoardBtn = document.querySelectorAll(".calculator-board-btn");
 
-button.addEventListener('click', ()=>{
+calculatorBoardBtn.forEach(btn =>{
+    btn.addEventListener('click',(e)=>{
+        calculatorBoardCalc.value += e.target.innerText
+    })
+})
+
+this.addEventListener('click', ()=>{
     let input = board.value
     console.log(calc(input));
 });
-
-
-
 function calc(input){
     let array = [];
     let operations = ['*', '-', '+', '/']
