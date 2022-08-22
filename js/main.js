@@ -14,6 +14,9 @@ btnClear.addEventListener('click',()=>{
 
 calculatorBoardBtn.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
+        if(calculatorBoardCalc.value == 'Syntax Error'){
+            calculatorBoardCalc.value = ''
+        }
         calculatorBoardCalc.value += e.target.innerText
     })
 })
