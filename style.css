@@ -3,12 +3,16 @@
 :root{
     --bg-color:#fff;
     --text-color:rgb(34, 37, 46);
+    --calc-display-btn-color:#fff;
+    --calc-display-board-color: #fff;
 }
 
 @media (prefers-color-scheme: dark){
     :root{
     --bg-color:rgb(34, 37, 46);
     --text-color:#fff;
+    --calc-display-btn-color:rgb(41, 45, 54);
+    --calc-display-board-color: rgb(39, 43, 52);
     }
 }
 *{
@@ -42,10 +46,10 @@ body{
     grid-template-rows: 35% 65%;
 }
 .calculator-display{
-    background:dodgerblue;
+    background:var(--calc-display-board-color);
 }
 .calculator-board{
-    background: orangered;
+    background: var(--calc-display-btn-color);
     display:grid;
     grid-template-columns: repeat(4, 4fr);
 }
