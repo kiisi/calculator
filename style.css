@@ -15,7 +15,9 @@
     --calc-display-board-color: rgb(39, 43, 52);
     }
 }
-*{
+*,
+*::before,
+*::after{
     margin:0;
     padding:0;
     box-sizing: border-box;
@@ -59,6 +61,11 @@ body{
     place-items: center;
     font-size:2rem;
     border:.5px solid #eee;
+    position: relative;
+    overflow:hidden;
+}
+.calculator-board-btn:active{
+    background: rgb(159, 194, 230);
 }
 .btn-aqua{
     color:rgb(69, 232, 205);
@@ -90,6 +97,7 @@ body{
     align-items: flex-end;
     font-weight:400;
 }
+
 
 @media screen and (min-width:768px){
     .calculator-wrapper{
