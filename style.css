@@ -59,6 +59,12 @@ body{
     font-size:2rem;
     border:.5px solid #eee;
 }
+.btn-aqua{
+    color:rgb(69, 232, 205);
+}
+.btn-red{
+    color:rgb(195, 100, 104);
+}
 
 @media screen and (min-width:768px){
     .calculator-wrapper{
