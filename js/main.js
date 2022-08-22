@@ -3,6 +3,12 @@ import calculator from './calc.js';
 
 let calculatorBoardCalc = document.querySelector(".calculator-display-calc input");
 let calculatorBoardBtn = document.querySelectorAll(".calculator-board-btn-display");
+let btnClear = document.querySelector(".btn-clear");
+let btnEqual = document.querySelector(".btn-equal");
+
+btnClear.addEventListener('click',()=>{
+    calculatorBoardCalc.value = '';
+})
 
 calculatorBoardBtn.forEach(btn =>{
     btn.addEventListener('click',(e)=>{
@@ -10,7 +16,7 @@ calculatorBoardBtn.forEach(btn =>{
     })
 })
 
-this.addEventListener('click', ()=>{
+btnEqual.addEventListener('click', ()=>{
     let input = board.value
     console.log(calc(input));
 });
