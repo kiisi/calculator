@@ -27,7 +27,7 @@ body{
 .calculator-wrapper{
     height:100%;
     width:100%;
-    max-height: 70rem;
+    max-height: 72rem;
     border:1px solid #aaa;
     box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
     background: lightgreen;
