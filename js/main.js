@@ -2,12 +2,14 @@ import calculator from './calc.js';
 
 
 let calculatorBoardCalc = document.querySelector(".calculator-display-calc input");
+let calculatorBoardAns = document.querySelector(".calculator-display-ans");
 let calculatorBoardBtn = document.querySelectorAll(".calculator-board-btn-display");
 let btnClear = document.querySelector(".btn-clear");
 let btnEqual = document.querySelector(".btn-equal");
 
 btnClear.addEventListener('click',()=>{
     calculatorBoardCalc.value = '';
+    calculatorBoardAns.innerText = ''
 })
 
 calculatorBoardBtn.forEach(btn =>{
@@ -17,8 +19,16 @@ calculatorBoardBtn.forEach(btn =>{
 })
 
 btnEqual.addEventListener('click', ()=>{
-    let input = board.value
-    console.log(calc(input));
+    let input = calculatorBoardCalc.value
+    let result = calc(input)
+    try{
+        let check = result.includes('Error')
+        calculatorBoardCalc.value = result
+         
+    }
+    catch(err){
+        calculatorBoardAns.innerText = result
+    }
 });
 function calc(input){
     let array = [];
@@ -27,17 +37,17 @@ function calc(input){
 
     for (let i = 0; i < input.length; i++){
         if((i === 0 && subOperations.includes(input.at(i)))){
-            return "Syntax Error 1"
+            return "Syntax Error"
         }
         else if((i > 0 && subOperations.includes(input.at(i)) && subOperations.includes(input.at(i + 1)) && i < input.length)){
-            return "Syntax Error 2"
+            return "Syntax Error"
         }
         else if((i === input.length - 1) && operations.includes(input.at(i)) 
         ){
-            return "Syntax Error 3"
+            return "Syntax Error"
         }
         else if((operations.includes(input.at(i))) && subOperations.includes(input.at(i + 1))){
-            return "Syntax Error 4"
+            return "Syntax Error"
         }
         array.push(input[i])
     }
