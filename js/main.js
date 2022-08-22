@@ -32,10 +32,11 @@ btnEqual.addEventListener('click', ()=>{
 });
 function calc(input){
     let array = [];
-    let operations = ['*', '-', '+', '/']
-    let subOperations = ['*','/']
+    let operations = ['x', '−', '+', '÷']
+    let subOperations = ['x','÷']
 
     for (let i = 0; i < input.length; i++){
+        
         if((i === 0 && subOperations.includes(input.at(i)))){
             return "Syntax Error"
         }
@@ -60,7 +61,7 @@ function numbersArray(arr){
     let numArray = []
     let prev = 0;
     for(let i = 0; i < joinNum.length; i++){
-        if(joinNum[i] == '*' || joinNum[i] == '+' || joinNum[i] == '-' || joinNum[i] == '/'){
+        if(joinNum[i] == 'x' || joinNum[i] == '+' || joinNum[i] == '−' || joinNum[i] == '÷'){
             numArray.push(joinNum.slice(prev, i))
             numArray.push(joinNum[i])
             prev = i + 1

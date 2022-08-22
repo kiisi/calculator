@@ -6,9 +6,9 @@ function convertToInt(i){
 
 
 function calculator(number){
-    let operations = ['*', '-', '+', '/']
-    let subOperations = ['*','/']
-    let opera = ['+','-']
+    let opera = ['+','−']
+    let operations = ['x', '−', '+', '÷']
+    let subOperations = ['x','÷']   
 
 
     let sepArray = []
@@ -28,7 +28,7 @@ function calculator(number){
     for(let i = 0; i < sepArray.length; i++){
         if(typeof(sepArray[i]) === 'number'){
             if(opera.includes(sepArray[i - 1])){
-                if(sepArray[i - 1] === '-'){
+                if(sepArray[i - 1] === '−'){
                     let num = -1 * sepArray[i]
                     filterSignArray.push(num)
                 }
@@ -62,7 +62,7 @@ function outputCalc(arr){
             }
         }
         else{
-            if(arr[i] === '*'){
+            if(arr[i] === 'x'){
                 initValue *= arr[i + 1];
                 i +=1;
             }
