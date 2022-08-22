@@ -27,7 +27,7 @@ btnEqual.addEventListener('click', ()=>{
          
     }
     catch(err){
-        calculatorBoardAns.innerText = result
+        calculatorBoardAns.textContent = result
     }
 });
 function calc(input){
