@@ -32,10 +32,23 @@ body{
     box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
     background: lightgreen;
 }
+.calculator{
+    height:100%;
+    width: 100%;
+    display:grid;
+    grid-template-rows: 30% 70%;
+}
+.calculator-display{
+    background:dodgerblue;
+}
+.calculator-board{
+    background: orangered;
+}
+
 
 @media screen and (min-width:768px){
     .calculator-wrapper{
-        width: 76.8rem;
+        width:76.8rem;
         height:50rem;
     }
 }
