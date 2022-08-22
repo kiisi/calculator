@@ -9,8 +9,22 @@
     --text-color:#fff;
     }
 }
-
+html{
+    font-size:62.5%;
+}
 body{
     background:var(--bg-color);
     color:var(--text-color);
+    display:grid;
+    place-items: center;
+    height:100vh;
+}
+.calculator-wrapper{
+    max-height:55rem;
+    height:100%;
+    width:33rem;
+    background: ;
+    border-radius:1rem ;
+    border:1px solid #aaa;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
 }
