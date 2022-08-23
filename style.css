@@ -153,6 +153,7 @@ body{
     top:2%;
     right:2%;
     transform:translate(-2%, -2%);
+    z-index:999;
 }
 
 .darktheme.sidenav_effect{
