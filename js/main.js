@@ -108,13 +108,17 @@ let darkthemeIcon = document.querySelector(".darktheme_box span")
 
 const useDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
 
+if(useDarkTheme.matches){
+    darkthemeIcon.textContent = 'dark_mode'
+    darktheme.classList.add("sidenav_effect")
+}else{
+    darktheme.classList.remove("sidenav_effect");
+    darkthemeIcon.textContent = 'light_mode';
+}
+
 function toggleDarkMode(state){
     document.documentElement.classList.toggle("calc-darkmode", state)
 }
-
-toggleDarkMode(useDarkTheme.matches)
-
-
 darktheme.onclick = () =>{
     if(darkthemeIcon.textContent == 'light_mode'){
         darkthemeIcon.textContent = 'dark_mode'
