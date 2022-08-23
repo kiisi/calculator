@@ -31,9 +31,26 @@ btnEqual.addEventListener('click', ()=>{
         calculatorBoardCalc.value = result         
     }
     catch(err){
-        calculatorBoardAns.textContent = result
+        calculatorBoardAns.textContent = numberFormat(result)
     }
 });
+
+
+function numberFormat(number){
+    let numStr = number.toString().split("")
+    let numArr = [];
+
+    for(let i = -1; i >= (numStr.length * -1); i--){
+        numArr.push(numStr.at(i))
+        
+        if(i != -1 && i % 3 == 0 && numStr.at(i-1)){
+            numArr.push(',')
+        }
+        
+    }
+    return numArr.reverse().join('')
+}
+
 function calc(input){
     let array = [];
     let operations = ['x', '−', '+', '÷']
