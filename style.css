@@ -6,6 +6,12 @@
     --calc-display-btn-color:#fff;
     --calc-display-board-color: #fff;
 }
+.calc-darkmode{
+    --bg-color:rgb(34, 37, 46);
+    --text-color:#fff;
+    --calc-display-btn-color:rgb(41, 45, 54);
+    --calc-display-board-color: rgb(39, 43, 52);
+}
 
 @media (prefers-color-scheme: dark){
     :root{

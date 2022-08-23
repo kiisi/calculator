@@ -101,16 +101,30 @@ function refineNumArray(arr){
     return calculator(refinedArray)
 }
 
+//DARKTHEME
 
 let darktheme = document.querySelector(".darktheme");
 let darkthemeIcon = document.querySelector(".darktheme_box span")
+
+const useDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+function toggleDarkMode(state){
+    document.documentElement.classList.toggle("calc-darkmode", state)
+}
+
+
+
+
 darktheme.onclick = () =>{
     if(darkthemeIcon.textContent == 'light_mode'){
         darkthemeIcon.textContent = 'dark_mode'
         darktheme.classList.add("sidenav_effect")
+        toggleDarkMode(true)
     }
     else{
         darktheme.classList.remove("sidenav_effect");
         darkthemeIcon.textContent = 'light_mode';
+        toggleDarkMode(false)
     }
 }
+
