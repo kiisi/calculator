@@ -82,3 +82,17 @@ function refineNumArray(arr){
     let refinedArray = arr.filter(e=> e !== '')
     return calculator(refinedArray)
 }
+
+
+let darktheme = document.querySelector(".darktheme");
+let darkthemeIcon = document.querySelector(".darktheme_box span")
+darktheme.onclick = () =>{
+    if(darkthemeIcon.textContent == 'light_mode'){
+        darkthemeIcon.textContent = 'dark_mode'
+        darktheme.classList.add("sidenav_effect")
+    }
+    else{
+        darktheme.classList.remove("sidenav_effect");
+        darkthemeIcon.textContent = 'light_mode';
+    }
+}

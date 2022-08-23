@@ -98,6 +98,40 @@ body{
     font-weight:400;
 }
 
+.darktheme{
+    height:2.6rem;
+    width:4.2rem;
+    background:lavender;
+    border-radius:1.2rem;
+    padding:4.2px 3px;
+    display:flex;
+    justify-content: flex-start;
+    position: fixed;
+    top:2%;
+    right:2%;
+    transform:translate(-2%, -2%);
+}
+
+.darktheme.sidenav_effect{
+    justify-content:flex-end;
+    background:rgb(71, 77, 87);
+}
+.darktheme_box{
+    height:1.75rem;
+    width:1.75rem;
+    background:#fff;
+    border-radius:1.2rem;
+    color:rgb(240, 185, 11);
+    position:relative;
+    display:grid;
+    place-items:center;
+    box-shadow:rgb(20 21 26 / 4%) 0px 1px 2px, rgb(71 77 87 / 4%) 0px 3px 6px, rgb(20 21 26 / 10%) 0px 0px 1px;
+
+}
+.darktheme_box span{
+    font-size:17px;
+}
+
 
 @media screen and (min-width:768px){
     .calculator-wrapper{
