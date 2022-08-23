@@ -6,10 +6,18 @@ let calculatorBoardAns = document.querySelector(".calculator-display-ans");
 let calculatorBoardBtn = document.querySelectorAll(".calculator-board-btn-display");
 let btnClear = document.querySelector(".btn-clear");
 let btnEqual = document.querySelector(".btn-equal");
+let calcClear = document.querySelector(".calculator-display-clear");
+
+
 
 btnClear.addEventListener('click',()=>{
     calculatorBoardCalc.value = '';
     calculatorBoardAns.innerText = ''
+    
+    calcClear.classList.add("clear-effect")
+    calcClear.addEventListener('animationend',()=>{
+        calcClear.classList.remove("clear-effect")
+    })
 })
 
 calculatorBoardBtn.forEach(btn =>{
