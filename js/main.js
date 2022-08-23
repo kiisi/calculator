@@ -112,7 +112,7 @@ function toggleDarkMode(state){
     document.documentElement.classList.toggle("calc-darkmode", state)
 }
 
-
+toggleDarkMode(useDarkTheme.matches)
 
 
 darktheme.onclick = () =>{
