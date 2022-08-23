@@ -31,7 +31,12 @@ btnEqual.addEventListener('click', ()=>{
         calculatorBoardCalc.value = result         
     }
     catch(err){
-        calculatorBoardAns.innerHTML = numberFormat(result)
+        calculatorBoardAns.innerHTML = `<div>${numberFormat(result)}</div>`;
+        let calculatorBoardAnsText = document.querySelector(".calculator-display-ans div");
+        calculatorBoardAnsText.classList.add("c-ans-effect")
+        calculatorBoardAnsText.addEventListener("animationend",()=>{
+            calculatorBoardAnsText.classList.remove("c-ans-effect")
+        })
     }
 });
 

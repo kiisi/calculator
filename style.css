@@ -53,6 +53,7 @@ body{
 .calculator-board{
     background: var(--calc-display-btn-color);
     display:grid;
+    z-index:2;
     grid-template-columns: repeat(4, 4fr);
 }
 .calculator-board-btn{
@@ -97,6 +98,20 @@ body{
     align-items: flex-end;
     font-weight:400;
     color:dodgerblue;
+    position:relative;
+    z-index:1;
+}
+.calculator-display-ans div.c-ans-effect{
+    transform:translateY(0);
+    animation:calc-ans-effect 250ms linear; 
+}
+@keyframes calc-ans-effect{
+    from{
+        transform:translateY(100%);
+    }
+    to{
+        transform:translateY(0);
+    }
 }
 
 .darktheme{
@@ -127,7 +142,6 @@ body{
     display:grid;
     place-items:center;
     box-shadow:rgb(20 21 26 / 4%) 0px 1px 2px, rgb(71 77 87 / 4%) 0px 3px 6px, rgb(20 21 26 / 10%) 0px 0px 1px;
-
 }
 .darktheme_box span{
     font-size:17px;
