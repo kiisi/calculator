@@ -31,7 +31,7 @@ btnEqual.addEventListener('click', ()=>{
         calculatorBoardCalc.value = result         
     }
     catch(err){
-        calculatorBoardAns.textContent = numberFormat(result)
+        calculatorBoardAns.innerHTML = numberFormat(result)
     }
 });
 
