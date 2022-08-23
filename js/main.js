@@ -28,7 +28,8 @@ btnEqual.addEventListener('click', ()=>{
     let result = calc(input)
     try{
         let check = result.includes('Error')
-        calculatorBoardCalc.value = result         
+        calculatorBoardCalc.value = result        
+        calculatorBoardAns.innerHTML = `<div></div>`;
     }
     catch(err){
         calculatorBoardAns.innerHTML = `<div>${numberFormat(result)}</div>`;
