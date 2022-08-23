@@ -23,11 +23,12 @@ calculatorBoardBtn.forEach(btn =>{
 
 btnEqual.addEventListener('click', ()=>{
     let input = calculatorBoardCalc.value
+    calculatorBoardCalc.value = '';
+
     let result = calc(input)
     try{
         let check = result.includes('Error')
-        calculatorBoardCalc.value = result
-         
+        calculatorBoardCalc.value = result         
     }
     catch(err){
         calculatorBoardAns.textContent = result
