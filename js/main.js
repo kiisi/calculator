@@ -44,7 +44,7 @@ function numberFormat(number){
         numArr.push(numStr.at(i))
         
         if(i != -1 && i % 3 == 0 && numStr.at(i-1)){
-            numArr.push(',')
+            numArr.push(' ')
         }
         
     }
