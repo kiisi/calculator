@@ -1,4 +1,3 @@
-//import calculator from './calc.js';
 import theme from './theme.js'
 
 let calculatorBoardCalc = document.querySelector(".calculator-display-calc input");
