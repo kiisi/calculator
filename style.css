@@ -145,6 +145,7 @@ body{
     height:2.6rem;
     width:4.2rem;
     background:lavender;
+    cursor:pointer;
     border-radius:1.2rem;
     padding:4.2px 3px;
     display:flex;

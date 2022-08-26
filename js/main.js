@@ -1,5 +1,5 @@
-import calculator from './calc.js';
-
+//import calculator from './calc.js';
+import theme from './theme.js'
 
 let calculatorBoardCalc = document.querySelector(".calculator-display-calc input");
 let calculatorBoardAns = document.querySelector(".calculator-display-ans");
@@ -33,14 +33,15 @@ btnEqual.addEventListener('click', ()=>{
     let input = calculatorBoardCalc.value
     calculatorBoardCalc.value = '';
 
-    let result = calc(input)
+    let result = handleInputError(input)
+    console.log(result)
+
     try{
-        let check = result.includes('Error')
+        result.includes('Error')
         calculatorBoardCalc.value = result        
         calculatorBoardAns.innerHTML = `<div></div>`;
-    }
-    catch(err){
-        calculatorBoardAns.innerHTML = `<div>${numberFormat(result)}</div>`;
+    }catch(err){
+        calculatorBoardAns.innerHTML = `<div>${result}</div>`;
         let calculatorBoardAnsText = document.querySelector(".calculator-display-ans div");
         calculatorBoardAnsText.classList.add("c-ans-effect")
         calculatorBoardAnsText.addEventListener("animationend",()=>{
@@ -49,50 +50,32 @@ btnEqual.addEventListener('click', ()=>{
     }
 });
 
-
-function numberFormat(number){
-    let numStr = number.toString().split("")
-    let numArr = [];
-
-    for(let i = -1; i >= (numStr.length * -1); i--){
-        numArr.push(numStr.at(i))
-        
-        if(i != -1 && i % 3 == 0 && numStr.at(i-1)){
-            numArr.push(' ')
-        }
-        
-    }
-    return numArr.reverse().join('')
-}
-
-function calc(input){
-    let array = [];
-    let operations = ['x', '−', '+', '÷']
-    let subOperations = ['x','÷']
-
+/* Handling Possible Errors In The Inputs */
+function handleInputError(input){
+    let operations = ['x', '−', '+', '÷'];
+    let mdOperations = ['x','÷'];
+    
+    let arr = []
     for (let i = 0; i < input.length; i++){
-        
-        if((i === 0 && subOperations.includes(input.at(i)))){
-            return "Syntax Error"
+        if((i === 0 && mdOperations.includes(input.at(i))) || (i === input.length - 1 && operations.includes(input.at(i))) ){
+            return "Syntax Error - 1"
         }
-        else if((i > 0 && subOperations.includes(input.at(i)) && subOperations.includes(input.at(i + 1)) && i < input.length)){
-            return "Syntax Error"
+        else if((i > 0 && mdOperations.includes(input.at(i)) && mdOperations.includes(input.at(i + 1)))){
+            return "Syntax Error - 2"
         }
-        else if((i === input.length - 1) && operations.includes(input.at(i)) 
-        ){
-            return "Syntax Error"
+        else if((operations.includes(input.at(i))) && mdOperations.includes(input.at(i + 1))){
+            return "Syntax Error - 3"
         }
-        else if((operations.includes(input.at(i))) && subOperations.includes(input.at(i + 1))){
-            return "Syntax Error"
-        }
-        array.push(input[i])
+        arr.push(input[i])
     }
-    let mainArray = numbersArray(array)
-    return mainArray;
+    let numbers_array = numbersArray(arr);   
+    return numbers_array;
 }
 
+/* Grouping the numbers */
 function numbersArray(arr){
     let joinNum = arr.join('')
+    
     let numArray = []
     let prev = 0;
     for(let i = 0; i < joinNum.length; i++){
@@ -106,45 +89,135 @@ function numbersArray(arr){
         }
     }
 
-    let refNumArray = refineNumArray(numArray)
-    return refNumArray
-}
+    /* Removing spaces in the array */
+    let spaceRemoval = numArray.filter(e => e !== '')
 
-function refineNumArray(arr){
-    let refinedArray = arr.filter(e=> e !== '')
-    return calculator(refinedArray)
-}
+    let condenseSign = []
+    let mpOperations = ['−', '+'];
+    let num = 1;
 
-//DARKTHEME
-
-let darktheme = document.querySelector(".darktheme");
-let darkthemeIcon = document.querySelector(".darktheme_box span")
-
-const useDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
-
-if(useDarkTheme.matches){
-    darkthemeIcon.textContent = 'dark_mode'
-    darktheme.classList.add("sidenav_effect")
-    document.documentElement.classList.add("calc-darkmode")
-}else{
-    darktheme.classList.remove("sidenav_effect");
-    darkthemeIcon.textContent = 'light_mode';
-    document.documentElement.classList.remove("calc-darkmode")
-}
-
-function toggleDarkMode(state){
-    document.documentElement.classList.toggle("calc-darkmode", state)
-}
-darktheme.onclick = () =>{
-    if(darkthemeIcon.textContent == 'light_mode'){
-        darkthemeIcon.textContent = 'dark_mode'
-        darktheme.classList.add("sidenav_effect")
-        toggleDarkMode(true)
+    for(let i = 0; i < spaceRemoval.length; i++){
+        if(mpOperations.includes(spaceRemoval[i])){
+            if(spaceRemoval[i] == '−'){
+                num *= -1
+            }
+            if(!mpOperations.includes(spaceRemoval[i + 1])){
+                if(num < 0){
+                    condenseSign.push('−')
+                }else{
+                    condenseSign.push('+')
+                }
+                num = 1
+            }
+        }else{
+            condenseSign.push(spaceRemoval[i])
+        }
     }
-    else{
-        darktheme.classList.remove("sidenav_effect");
-        darkthemeIcon.textContent = 'light_mode';
-        toggleDarkMode(false)
-    }
+
+
+    
+    let calc = calculator(condenseSign);
+    return calc 
 }
 
+function calculator(number){
+    
+
+    let sepArray = []
+
+    let initValue = 0;
+    let sign = "+"
+
+    for(let i = 0; i < number.length; i++){
+        if(convertToInt(number[i])){
+            sepArray.push(convertToInt(number[i]))
+        }else{
+            sepArray.push(number[i])
+        }
+    }
+
+    let division_rule = divisionRule(sepArray)
+    return division_rule
+}
+
+
+
+
+function divisionRule(arr){
+    
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] == '÷'){
+            let x = arr[i - 1]
+            let y = arr[i + 1]
+            let ans = x / y;
+            arr[i] = ans
+            arr.splice(i + 1, 1)
+            arr.splice(i - 1, 1, '')            
+        }
+    }
+    
+    let division = arr.filter(e => e != '')
+
+    let multiplication_rule = multiplicationRule(division)
+    return multiplication_rule    
+}
+
+function multiplicationRule(arr){
+    
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] == 'x'){
+            let x = arr[i - 1]
+            let y = arr[i + 1]
+            let ans = x * y;
+            arr[i] = ans
+            arr.splice(i + 1, 1)
+            arr.splice(i - 1, 1, '')            
+        }
+    }
+    
+    let multiplication = arr.filter(e => e != '')
+
+    let add_sub = addSub(multiplication);
+    return add_sub
+}
+
+function addSub(arr){
+    let mpOperations = ['−', '+'];
+    let noSigns = [];
+    for (let i = 0; i < arr.length; i++){
+        if(typeof(arr[i]) === 'number'){
+            if(mpOperations.includes(arr[i - 1])){
+                if(arr[i - 1] === '−'){
+                    let num = -1 * arr[i]
+                    noSigns.push(num)
+                }
+                if(arr[i - 1] === '+'){
+                    noSigns.push(arr[i])
+                }   
+            }else{
+                noSigns.push(arr[i])
+            }
+        }
+    }
+
+    let initValue = 0;
+    for (let i = 0; i < noSigns.length; i++){
+        if(noSigns[i] < 0){
+            let num = -1 * noSigns[i];
+            initValue -= num;
+        }
+        else{
+            initValue += noSigns[i]
+        }
+        
+    }
+
+    return initValue
+}
+
+function convertToInt(i){
+    let num = parseInt(i);
+    return num
+}
+//Theme of the web app
+theme()
