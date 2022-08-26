@@ -33,8 +33,6 @@ btnEqual.addEventListener('click', ()=>{
     calculatorBoardCalc.value = '';
 
     let result = handleInputError(input)
-    console.log(result)
-
     try{
         result.includes('Error')
         calculatorBoardCalc.value = result        
