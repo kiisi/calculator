@@ -128,6 +128,17 @@ body{
     position:relative;
     z-index:1;
 }
+.btn-equal{
+    grid-column: 4/5;
+    grid-row:4/6;
+    font-size:5rem;
+}
+.btn-dot{
+    font-size:4rem;
+}
+.btn-zero{
+    grid-column:1/4;
+}
 .calculator-display-ans div.c-ans-effect{
     transform:translateY(0);
     animation:calc-ans-effect 250ms linear; 

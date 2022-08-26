@@ -6,7 +6,14 @@ let calculatorBoardBtn = document.querySelectorAll(".calculator-board-btn-displa
 let btnClear = document.querySelector(".btn-clear");
 let btnEqual = document.querySelector(".btn-equal");
 let calcClear = document.querySelector(".calculator-display-clear");
+let btnBackspace = document.querySelector(".btn-backspace");
 
+btnBackspace.addEventListener("click",()=>{
+    if(calculatorBoardCalc.value == 'Syntax Error'){
+        calculatorBoardCalc.value = ''
+    }
+    calculatorBoardCalc.value = calculatorBoardCalc.value.substring(0, calculatorBoardCalc.value.length - 1)
+})
 
 
 btnClear.addEventListener('click',()=>{
@@ -55,13 +62,13 @@ function handleInputError(input){
     let arr = []
     for (let i = 0; i < input.length; i++){
         if((i === 0 && mdOperations.includes(input.at(i))) || (i === input.length - 1 && operations.includes(input.at(i))) ){
-            return "Syntax Error - 1"
+            return "Syntax Error"
         }
         else if((i > 0 && mdOperations.includes(input.at(i)) && mdOperations.includes(input.at(i + 1)))){
-            return "Syntax Error - 2"
+            return "Syntax Error"
         }
         else if((operations.includes(input.at(i))) && mdOperations.includes(input.at(i + 1))){
-            return "Syntax Error - 3"
+            return "Syntax Error"
         }
         arr.push(input[i])
     }
@@ -133,15 +140,44 @@ function calculator(number){
         }
     }
 
-    let division_rule = divisionRule(sepArray)
-    return division_rule
+    let condense_addsub = condenseAddSub(sepArray)
+    return condense_addsub
+
 }
 
 
+function condenseAddSub(arr){
+    let mpOperations = ['−', '+'];
+    let noSigns = [];
+    for (let i = 0; i < arr.length; i++){
+        if(typeof(arr[i]) === 'number'){
+            if(mpOperations.includes(arr[i - 1])){
+                if(arr[i - 1] === '−'){
+                    let num = -1 * arr[i]
+                    noSigns.push(num)
+                }
+                if(arr[i - 1] === '+'){
+                    noSigns.push(arr[i])
+                }   
+            }else{
+                noSigns.push(arr[i])
+            }
+        }else{
+            if(!mpOperations.includes(arr[i])){
+                noSigns.push(arr[i])
+            }
+        }
+    }
 
+    console.log(noSigns)
+    let division_rule = divisionRule(noSigns)
+    return division_rule
+}
 
 function divisionRule(arr){
     
+    console.log(arr)
+
     for(let i = 0; i < arr.length; i++){
         if(arr[i] == '÷'){
             let x = arr[i - 1]
@@ -178,33 +214,19 @@ function multiplicationRule(arr){
     return add_sub
 }
 
+
+
 function addSub(arr){
-    let mpOperations = ['−', '+'];
-    let noSigns = [];
-    for (let i = 0; i < arr.length; i++){
-        if(typeof(arr[i]) === 'number'){
-            if(mpOperations.includes(arr[i - 1])){
-                if(arr[i - 1] === '−'){
-                    let num = -1 * arr[i]
-                    noSigns.push(num)
-                }
-                if(arr[i - 1] === '+'){
-                    noSigns.push(arr[i])
-                }   
-            }else{
-                noSigns.push(arr[i])
-            }
-        }
-    }
+    
 
     let initValue = 0;
-    for (let i = 0; i < noSigns.length; i++){
-        if(noSigns[i] < 0){
-            let num = -1 * noSigns[i];
+    for (let i = 0; i < arr.length; i++){
+        if(arr[i] < 0){
+            let num = -1 * arr[i];
             initValue -= num;
         }
         else{
-            initValue += noSigns[i]
+            initValue += arr[i]
         }
         
     }
