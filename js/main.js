@@ -218,7 +218,6 @@ function multiplicationRule(arr){
 
 function addSub(arr){
     
-
     let initValue = 0;
     for (let i = 0; i < arr.length; i++){
         if(arr[i] < 0){
@@ -235,7 +234,7 @@ function addSub(arr){
 }
 
 function convertToInt(i){
-    let num = parseInt(i);
+    let num = Number(i);
     return num
 }
 //Theme of the web app

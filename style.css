@@ -24,7 +24,7 @@
 }
 html{
     font-size:62.5%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 body{
     background:var(--bg-color);
@@ -38,8 +38,7 @@ body{
     width:100%;
     max-height: 90rem;
     border:1px solid #aaa;
-    box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
-    background: lightgreen;
+    box-shadow: 0 0 4px 2px rgba(0,0,0,.3);
 }
 .calculator{
     height:100%;
@@ -77,7 +76,7 @@ body{
     }
 }
 
-.calculator-board{
+.calculator-board {
     background: var(--calc-display-btn-color);
     display:grid;
     z-index:2;
@@ -86,7 +85,7 @@ body{
 .calculator-board-btn{
     display:grid;
     place-items: center;
-    font-size:2rem;
+    font-size: 2rem;
     border:.5px solid #eee;
     position: relative;
     overflow:hidden;
@@ -134,10 +133,11 @@ body{
     font-size:5rem;
 }
 .btn-dot{
-    font-size:4rem;
+    font-size:36px;
+    line-height: 1.5;
 }
 .btn-zero{
-    grid-column:1/4;
+    grid-column:2/4;
 }
 .calculator-display-ans div.c-ans-effect{
     transform:translateY(0);
